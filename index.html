@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful — Deliver Ethiopia</title>
+  <meta name="description" content="Payment confirmation for your Deliver Ethiopia order">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚚</text></svg>">
+
+  <style>
+    :root {
+      --primary: #00a651;
+      --primary-dark: #008c44;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --text-main: #0f172a;
+      --text-sub: #64748b;
+      --bg: #f8fafc;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.03);
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* Checkmark Animation                        */
+    /* ══════════════════════════════════════════ */
+    .checkmark {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2.5;
+      stroke: var(--success);
+      stroke-miterlimit: 10;
+      margin: 0 auto 1.5rem;
+      box-shadow: inset 0 0 0 var(--success);
+      animation:
+        fill .4s ease-in-out .4s forwards,
+        scale .3s ease-in-out .9s both;
+    }
+    .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2.5;
+      stroke-miterlimit: 10;
+      stroke: var(--success);
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      stroke: white;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+    @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+    @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+    @keyframes fill { 100% { box-shadow: inset 0 0 0 48px var(--success); } }
+
+    /* Error icon */
+    .error-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--danger);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      animation: scale .3s ease-in-out both;
+    }
+
+    h1 {
+      color: var(--text-main);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-sub);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.875rem;
+    }
+
+    .amount-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #86efac;
+      border-radius: 16px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .amount-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #166534;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .amount-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .amount-value small {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-left: 0.25rem;
+    }
+
+    .ref-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+
+    .ref-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .ref-value {
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      font-size: 0.75rem;
+      color: var(--text-main);
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 14px rgba(0, 166, 81, 0.3);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 6px 20px rgba(0, 166, 81, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text-sub);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* Spinner                                    */
+    /* ══════════════════════════════════════════ */
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ══════════════════════════════════════════ */
+    /* State management                           */
+    /* ══════════════════════════════════════════ */
+    .state { display: none; }
+    .state.active { display: block; }
+
+    /* Footer */
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-sub);
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="brand">🚚 Deliver Ethiopia</div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LOADING STATE                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="state-loading" class="state active">
+    <div class="spinner"></div>
+    <h1>Verifying Payment</h1>
+    <p class="subtitle">Please wait while we confirm your transaction...</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SUCCESS STATE                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="state-success" class="state">
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+      <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+      <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+    </svg>
+    <h1>Payment Successful!</h1>
+    <p class="subtitle">Your payment has been confirmed.</p>
+
+    <div class="amount-box" id="amount-box" style="display: none;">
+      <div class="amount-label">Amount Paid</div>
+      <div class="amount-value">
+        <span id="amount-value">—</span>
+        <small>ETB</small>
+      </div>
+    </div>
+
+    <div class="ref-box">
+      <div class="ref-label">Transaction Reference</div>
+      <div class="ref-value" id="ref-value">—</div>
+    </div>
+
+    <div class="actions">
+      <a href="#" id="back-btn" class="btn btn-primary">
+        Back to Deliver Ethiopia
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FAILED STATE                               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="state-failed" class="state">
+    <div class="error-icon">✕</div>
+    <h1>Payment Not Confirmed</h1>
+    <p id="error-message">We couldn't verify your payment.</p>
+
+    <div class="ref-box">
+      <div class="ref-label">Transaction Reference</div>
+      <div class="ref-value" id="failed-ref-value">—</div>
+    </div>
+
+    <div class="actions">
+      <a href="#" id="retry-btn" class="btn btn-primary">Try Again</a>
+      <a href="mailto:support@deliverethiopia.com" class="btn btn-secondary">
+        Contact Support
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER                                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="footer">
+    Need help? Email <a href="mailto:support@deliverethiopia.com">support@deliverethiopia.com</a>
+  </div>
+</div>
+
+<script>
+  // ══════════════════════════════════════════════════
+  // CONFIGURATION — EDIT THESE
+  // ══════════════════════════════════════════════════
+  const CONFIG = {
+    // Your NestJS backend URL (no trailing slash)
+    // Dev: use ngrok — e.g. 'https://a1b2-c3d4.ngrok-free.app/api/v1'
+    // Prod: 'https://yourdomain.com/api/v1'
+    API_BASE: 'https://tenachin.org/api/v1',
+
+    // Where the "Back" button goes
+    APP_URL: 'https://tenachin.org',
+
+    // Support email
+    SUPPORT_EMAIL: 'support@deliverethiopia.com',
+
+    // Retry attempts (in case of network hiccup)
+    MAX_RETRIES: 2,
+    RETRY_DELAY_MS: 2000,
+  };
+
+  // ══════════════════════════════════════════════════
+  // MAIN
+  // ══════════════════════════════════════════════════
+  (function () {
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(window.location.search);
+    const txRef = params.get('tx_ref') || params.get('trx_ref') || params.get('reference');
+
+    // Setup buttons
+    $('back-btn').href = CONFIG.APP_URL;
+    $('retry-btn').href = CONFIG.APP_URL;
+
+    // Show/hide state
+    function show(state) {
+      document.querySelectorAll('.state').forEach((el) => el.classList.remove('active'));
+      const target = $(`state-${state}`);
+      if (target) target.classList.add('active');
+    }
+
+    // Display reference immediately
+    if (txRef) {
+      $('ref-value').textContent = txRef;
+      $('failed-ref-value').textContent = txRef;
+    } else {
+      $('ref-value').textContent = '(missing)';
+      $('failed-ref-value').textContent = '(missing)';
+    }
+
+    // ══════════════════════════════════════════════
+    // VALIDATION
+    // ══════════════════════════════════════════════
+    if (!txRef) {
+      $('error-message').textContent = 'Missing payment reference in URL.';
+      show('failed');
+      return;
+    }
+
+    // ══════════════════════════════════════════════
+    // VERIFY PAYMENT
+    // ══════════════════════════════════════════════
+    async function verifyPayment(attempt = 1) {
+      try {
+        const url = `${CONFIG.API_BASE}/payments/chapa/verify/${encodeURIComponent(txRef)}`;
+        console.log(`[Verify] Attempt ${attempt}: ${url}`);
+
+        const res = await fetch(url, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+        });
+
+        const data = await res.json();
+
+        console.log('[Verify] Response:', data);
+
+        if (!res.ok) {
+          throw new Error(data.message || `Server error ${res.status}`);
+        }
+
+        // ✅ Success
+        if (data.verified) {
+          if (data.amount) {
+            $('amount-box').style.display = 'block';
+            $('amount-value').textContent = Number(data.amount).toLocaleString('en-US', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            });
+          }
+          show('success');
+
+          // Fire a friendly toast / notification
+          document.title = '✅ Payment Confirmed — Deliver Ethiopia';
+          return;
+        }
+
+        // ⚠️ Not verified — retry if attempts remain
+        if (attempt < CONFIG.MAX_RETRIES) {
+          console.log(`[Verify] Not verified yet, retrying in ${CONFIG.RETRY_DELAY_MS}ms...`);
+          setTimeout(() => verifyPayment(attempt + 1), CONFIG.RETRY_DELAY_MS);
+          return;
+        }
+
+        // ❌ Give up → show failure
+        $('error-message').textContent =
+          data.message || 'Payment was not confirmed by the provider.';
+        show('failed');
+      } catch (err) {
+        console.error('[Verify] Error:', err);
+
+        // Network error → retry
+        if (attempt < CONFIG.MAX_RETRIES) {
+          setTimeout(() => verifyPayment(attempt + 1), CONFIG.RETRY_DELAY_MS);
+          return;
+        }
+
+        $('error-message').textContent =
+          err.message || 'Unable to reach the server. Please check your connection.';
+        show('failed');
+      }
+    }
+
+    // Kick off
+    verifyPayment();
+  })();
+</script>
+
+</body>
+</html>
