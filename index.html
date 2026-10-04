@@ -345,23 +345,17 @@
   // ══════════════════════════════════════════════════
   // CONFIGURATION — EDIT THESE
   // ══════════════════════════════════════════════════
-  const CONFIG = {
-    // Your NestJS backend URL (no trailing slash)
-    // Dev: use ngrok — e.g. 'https://a1b2-c3d4.ngrok-free.app/api/v1'
-    // Prod: 'https://yourdomain.com/api/v1'
-    API_BASE: 'https://tenachin.org/api/v1',
+ const CONFIG = {
+  // Point to your deployed Render backend
+  API_BASE: 'https://delivery-ethiopai-backend.onrender.com/api/v1',
 
-    // Where the "Back" button goes
-    APP_URL: 'https://tenachin.org',
+  // Where the "Back" button goes
+  APP_URL: 'https://delivery-ethiopai-backend.onrender.com',
 
-    // Support email
-    SUPPORT_EMAIL: 'support@deliverethiopia.com',
-
-    // Retry attempts (in case of network hiccup)
-    MAX_RETRIES: 2,
-    RETRY_DELAY_MS: 2000,
-  };
-
+  SUPPORT_EMAIL: 'support@deliverethiopia.com',
+  MAX_RETRIES: 2,
+  RETRY_DELAY_MS: 2000,
+};
   // ══════════════════════════════════════════════════
   // MAIN
   // ══════════════════════════════════════════════════
