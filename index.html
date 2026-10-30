@@ -240,12 +240,12 @@
   // CONFIG — YOUR ACTUAL API
   // ══════════════════════════════════════════════════
   const CONFIG = {
-    API_BASE: 'https://api.smrestaurant.com/api/v1',   // ← your real API
-    APP_DEEP_LINK: 'barter://payment/return',
-    APP_FALLBACK_URL: 'https://api.smrestaurant.com',
-    MAX_RETRIES: 6,
-    RETRY_DELAY_MS: 2500,
-  };
+  API_BASE: 'https://api.smrestaurant.com/api/v1',
+  APP_DEEP_LINK: 'barter://payment/return',
+  APP_FALLBACK_URL: 'https://api.smrestaurant.com',
+  MAX_RETRIES: 30,        // ← was 6
+  RETRY_DELAY_MS: 3000,   // ← was 2500
+};
 
   (function () {
     const $ = (id) => document.getElementById(id);
