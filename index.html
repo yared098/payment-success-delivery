@@ -237,15 +237,15 @@
 
 <script>
   // ══════════════════════════════════════════════════
-  // CONFIG — YOUR ACTUAL API
+  // CONFIG
   // ══════════════════════════════════════════════════
   const CONFIG = {
-  API_BASE: 'https://api.smrestaurant.com/api/v1',
-  APP_DEEP_LINK: 'barter://payment/return',
-  APP_FALLBACK_URL: 'https://api.smrestaurant.com',
-  MAX_RETRIES: 30,        // ← was 6
-  RETRY_DELAY_MS: 3000,   // ← was 2500
-};
+    API_BASE: 'https://api.smrestaurant.com/api/v1',
+    APP_DEEP_LINK: 'barter://payment/return',
+    APP_FALLBACK_URL: 'https://api.smrestaurant.com',
+    MAX_RETRIES: 30,        // 30 × 3s = 90 seconds
+    RETRY_DELAY_MS: 3000,
+  };
 
   (function () {
     const $ = (id) => document.getElementById(id);
@@ -295,7 +295,6 @@
     // ══════════════════════════════════════════════
     // CALL YOUR REAL API
     //   GET /payments/by-tx/:txRef
-    //   Returns: { txRef, status, amount, currency, plan, ... }
     // ══════════════════════════════════════════════
     async function checkStatus(attempt = 1) {
       try {
