@@ -3,67 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Successful — Deliver Ethiopia</title>
-  <meta name="description" content="Payment confirmation for your Deliver Ethiopia order">
-
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚚</text></svg>">
+  <title>Payment Successful — Barter Ethio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💚</text></svg>">
 
   <style>
     :root {
-      --primary: #00a651;
-      --primary-dark: #008c44;
-      --success: #22c55e;
-      --danger: #ef4444;
-      --text-main: #0f172a;
-      --text-sub: #64748b;
-      --bg: #f8fafc;
-      --border: #e2e8f0;
+      --primary: #00A86B;
+      --primary-dark: #007A4D;
+      --primary-light: #E8F5EE;
+      --success: #00A86B;
+      --danger: #B00020;
+      --text-main: #0B3D2E;
+      --text-sub: #5A7A6B;
+      --bg: #F4F9F6;
+      --border: #D4E8DD;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      background: linear-gradient(135deg, #F8FCFA 0%, var(--primary-light) 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       padding: 1rem;
-      -webkit-font-smoothing: antialiased;
     }
-
     .card {
       background: white;
       padding: 2.5rem 2rem;
       border-radius: 24px;
-      box-shadow:
-        0 25px 50px -12px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 25px 50px -12px rgba(0,122,77,0.15);
       text-align: center;
       max-width: 420px;
       width: 100%;
-      animation: slideUp 0.4s ease-out;
     }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
     .brand {
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.8rem;
+      font-weight: 800;
       letter-spacing: 0.15em;
       color: var(--primary);
       margin-bottom: 1.5rem;
       text-transform: uppercase;
     }
-
-    /* ══════════════════════════════════════════ */
-    /* Checkmark Animation                        */
-    /* ══════════════════════════════════════════ */
     .checkmark {
       width: 96px;
       height: 96px;
@@ -71,18 +52,15 @@
       display: block;
       stroke-width: 2.5;
       stroke: var(--success);
-      stroke-miterlimit: 10;
+      fill: none;
       margin: 0 auto 1.5rem;
       box-shadow: inset 0 0 0 var(--success);
-      animation:
-        fill .4s ease-in-out .4s forwards,
-        scale .3s ease-in-out .9s both;
+      animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
     }
     .checkmark__circle {
       stroke-dasharray: 166;
       stroke-dashoffset: 166;
       stroke-width: 2.5;
-      stroke-miterlimit: 10;
       stroke: var(--success);
       fill: none;
       animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
@@ -95,75 +73,45 @@
       animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
     }
     @keyframes stroke { 100% { stroke-dashoffset: 0; } }
-    @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+    @keyframes scale { 0%,100% { transform: none; } 50% { transform: scale3d(1.1,1.1,1); } }
     @keyframes fill { 100% { box-shadow: inset 0 0 0 48px var(--success); } }
-
-    /* Error icon */
     .error-icon {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
+      width: 96px; height: 96px; border-radius: 50%;
       background: var(--danger);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1.5rem;
-      color: white;
-      font-size: 3rem;
-      font-weight: 700;
-      animation: scale .3s ease-in-out both;
+      color: white; font-size: 3rem; font-weight: 700;
     }
-
     h1 {
       color: var(--text-main);
       font-size: 1.75rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
     }
-
     p {
       color: var(--text-sub);
       font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 0.5rem;
     }
-
-    .subtitle {
-      font-size: 0.875rem;
-    }
-
+    .subtitle { font-size: 0.875rem; }
     .amount-box {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      border: 1px solid #86efac;
+      background: var(--primary-light);
+      border: 1px solid #B8E5CC;
       border-radius: 16px;
       padding: 1rem;
       margin: 1.5rem 0;
     }
-
     .amount-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #166534;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--primary-dark);
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.25rem;
     }
-
     .amount-value {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.02em;
+      font-size: 2rem; font-weight: 800; color: var(--text-main);
     }
-
     .amount-value small {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-sub);
-      margin-left: 0.25rem;
+      font-size: 1rem; font-weight: 600; color: var(--text-sub); margin-left: 0.25rem;
     }
-
     .ref-box {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -171,31 +119,18 @@
       border-radius: 12px;
       margin: 1rem 0;
     }
-
     .ref-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--text-sub);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
+      font-size: 0.7rem; font-weight: 600; color: var(--text-sub);
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.25rem;
     }
-
     .ref-value {
       font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-      font-size: 0.75rem;
-      color: var(--text-main);
-      word-break: break-all;
-      line-height: 1.4;
+      font-size: 0.75rem; color: var(--text-main);
+      word-break: break-all; line-height: 1.4;
     }
-
     .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;
     }
-
     .btn {
       display: inline-block;
       text-decoration: none;
@@ -203,39 +138,22 @@
       border-radius: 12px;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
       cursor: pointer;
       border: none;
       text-align: center;
     }
-    .btn:active { transform: scale(0.97); }
-
     .btn-primary {
       background: var(--primary);
       color: white;
-      box-shadow: 0 4px 14px rgba(0, 166, 81, 0.3);
+      box-shadow: 0 4px 14px rgba(0,168,107,0.3);
     }
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      box-shadow: 0 6px 20px rgba(0, 166, 81, 0.4);
-    }
-
     .btn-secondary {
       background: white;
       color: var(--text-sub);
       border: 1px solid var(--border);
     }
-    .btn-secondary:hover {
-      background: var(--bg);
-      color: var(--text-main);
-    }
-
-    /* ══════════════════════════════════════════ */
-    /* Spinner                                    */
-    /* ══════════════════════════════════════════ */
     .spinner {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border: 3px solid var(--border);
       border-top: 3px solid var(--primary);
       border-radius: 50%;
@@ -243,60 +161,41 @@
       margin: 0 auto 1.5rem;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ══════════════════════════════════════════ */
-    /* State management                           */
-    /* ══════════════════════════════════════════ */
     .state { display: none; }
     .state.active { display: block; }
-
-    /* Footer */
     .footer {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
+      margin-top: 2rem; padding-top: 1.5rem;
       border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--text-sub);
+      font-size: 0.75rem; color: var(--text-sub);
     }
-
-    .footer a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
 <div class="card">
-  <div class="brand">🚚 Deliver Ethiopia</div>
+  <div class="brand">💚 Barter Ethio</div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- LOADING STATE                              -->
-  <!-- ═══════════════════════════════════════════ -->
+  <!-- LOADING -->
   <div id="state-loading" class="state active">
     <div class="spinner"></div>
     <h1>Verifying Payment</h1>
-    <p class="subtitle">Please wait while we confirm your transaction...</p>
+    <p class="subtitle">Please wait while we confirm your transaction…</p>
   </div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SUCCESS STATE                              -->
-  <!-- ═══════════════════════════════════════════ -->
+  <!-- SUCCESS -->
   <div id="state-success" class="state">
     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
       <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
       <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
     </svg>
     <h1>Payment Successful!</h1>
-    <p class="subtitle">Your payment has been confirmed.</p>
+    <p class="subtitle" id="plan-label">Your plan is now active.</p>
 
     <div class="amount-box" id="amount-box" style="display: none;">
       <div class="amount-label">Amount Paid</div>
       <div class="amount-value">
         <span id="amount-value">—</span>
-        <small>ETB</small>
+        <small id="currency">ETB</small>
       </div>
     </div>
 
@@ -306,15 +205,13 @@
     </div>
 
     <div class="actions">
-      <a href="#" id="back-btn" class="btn btn-primary">
-        Back to Deliver Ethiopia
+      <a href="barter://payment/return" id="back-btn" class="btn btn-primary">
+        Return to app
       </a>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- FAILED STATE                               -->
-  <!-- ═══════════════════════════════════════════ -->
+  <!-- FAILED -->
   <div id="state-failed" class="state">
     <div class="error-icon">✕</div>
     <h1>Payment Not Confirmed</h1>
@@ -326,139 +223,144 @@
     </div>
 
     <div class="actions">
-      <a href="#" id="retry-btn" class="btn btn-primary">Try Again</a>
-      <a href="mailto:supportxyz@deliverethiopia.com" class="btn btn-secondary">
-        Contact Support
+      <a href="barter://payment/return" id="retry-btn" class="btn btn-primary">
+        Return to app
       </a>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- FOOTER                                     -->
-  <!-- ═══════════════════════════════════════════ -->
   <div class="footer">
-    Need help new? Email <a href="mailto:support@deliverethiopia.com">support@deliverethiopia.com</a>
+    Need help? Email
+    <a href="mailto:support@barter.et">support@barter.et</a>
   </div>
 </div>
 
 <script>
   // ══════════════════════════════════════════════════
-  // CONFIGURATION — EDIT THESE
+  // CONFIG — YOUR ACTUAL API
   // ══════════════════════════════════════════════════
- const CONFIG = {
-  // Point to your deployed Render backend
-  API_BASE: 'https://delivery-ethiopai-backend.onrender.com/api/v1',
+  const CONFIG = {
+    API_BASE: 'https://api.smrestaurant.com/api/v1',   // ← your real API
+    APP_DEEP_LINK: 'barter://payment/return',
+    APP_FALLBACK_URL: 'https://api.smrestaurant.com',
+    MAX_RETRIES: 6,
+    RETRY_DELAY_MS: 2500,
+  };
 
-  // Where the "Back" button goes
-  APP_URL: 'https://delivery-ethiopai-backend.onrender.com',
-
-  SUPPORT_EMAIL: 'support123@deliverethiopia.com',
-  MAX_RETRIES: 2,
-  RETRY_DELAY_MS: 2000,
-};
-
-  // ══════════════════════════════════════════════════
-  // MAIN
-  // ══════════════════════════════════════════════════
   (function () {
     const $ = (id) => document.getElementById(id);
     const params = new URLSearchParams(window.location.search);
-    const txRef = params.get('tx_ref') || params.get('trx_ref') || params.get('reference');
+    const txRef =
+      params.get('tx_ref') || params.get('trx_ref') || params.get('reference');
 
-    // Setup buttons
-    $('back-btn').href = CONFIG.APP_URL;
-    $('retry-btn').href = CONFIG.APP_URL;
+    // Deep-link back button
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const goBack = () => {
+      if (isMobile) {
+        window.location.href = CONFIG.APP_DEEP_LINK;
+        setTimeout(() => { window.location.href = CONFIG.APP_FALLBACK_URL; }, 1000);
+      } else {
+        window.location.href = CONFIG.APP_FALLBACK_URL;
+      }
+    };
+    $('back-btn').addEventListener('click', (e) => { e.preventDefault(); goBack(); });
+    $('retry-btn').addEventListener('click', (e) => { e.preventDefault(); goBack(); });
 
-    // Show/hide state
     function show(state) {
       document.querySelectorAll('.state').forEach((el) => el.classList.remove('active'));
       const target = $(`state-${state}`);
       if (target) target.classList.add('active');
     }
 
-    // Display reference immediately
-    if (txRef) {
-      $('ref-value').textContent = txRef;
-      $('failed-ref-value').textContent = txRef;
-    } else {
-      $('ref-value').textContent = '(missing)';
-      $('failed-ref-value').textContent = '(missing)';
-    }
-
-    // ══════════════════════════════════════════════
-    // VALIDATION
-    // ══════════════════════════════════════════════
     if (!txRef) {
       $('error-message').textContent = 'Missing payment reference in URL.';
       show('failed');
       return;
     }
 
+    $('ref-value').textContent = txRef;
+    $('failed-ref-value').textContent = txRef;
+
+    const PLAN_LABELS = {
+      daily_pass: 'Daily Pass active',
+      credit_100: '100 posts added',
+      credit_500: '500 posts added',
+      credit_1000: '1000 posts added',
+      pro_15d: 'PRO · 15 days activated',
+      monthly_pro: 'PRO · 30 days activated',
+      pro_6mo: 'PRO · 6 months activated',
+      yearly_pro: 'PRO · 1 year activated',
+    };
+
     // ══════════════════════════════════════════════
-    // VERIFY PAYMENT
+    // CALL YOUR REAL API
+    //   GET /payments/by-tx/:txRef
+    //   Returns: { txRef, status, amount, currency, plan, ... }
     // ══════════════════════════════════════════════
-    async function verifyPayment(attempt = 1) {
+    async function checkStatus(attempt = 1) {
       try {
-        const url = `${CONFIG.API_BASE}/payments/chapa/verify/${encodeURIComponent(txRef)}`;
-        console.log(`[Verify] Attempt ${attempt}: ${url}`);
+        const url = `${CONFIG.API_BASE}/payments/by-tx/${encodeURIComponent(txRef)}`;
+        console.log(`[Barter] Attempt ${attempt}: ${url}`);
 
-        const res = await fetch(url, {
-          method: 'GET',
-          headers: { 'Accept': 'application/json' },
-        });
-
+        const res = await fetch(url, { headers: { Accept: 'application/json' } });
         const data = await res.json();
-
-        console.log('[Verify] Response:', data);
+        console.log('[Barter] Response:', data);
 
         if (!res.ok) {
+          if (res.status === 404 && attempt < CONFIG.MAX_RETRIES) {
+            return retry(attempt);
+          }
           throw new Error(data.message || `Server error ${res.status}`);
         }
 
-        // ✅ Success
-        if (data.verified) {
+        // ✅ PAID
+        if (data.status === 'paid') {
           if (data.amount) {
             $('amount-box').style.display = 'block';
             $('amount-value').textContent = Number(data.amount).toLocaleString('en-US', {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             });
+            if (data.currency) $('currency').textContent = data.currency;
+          }
+          if (data.plan && PLAN_LABELS[data.plan]) {
+            $('plan-label').textContent = PLAN_LABELS[data.plan];
           }
           show('success');
-
-          // Fire a friendly toast / notification
-          document.title = '✅ Payment Confirmed — Deliver Ethiopia';
+          document.title = '✅ Payment Confirmed — Barter Ethio';
           return;
         }
 
-        // ⚠️ Not verified — retry if attempts remain
-        if (attempt < CONFIG.MAX_RETRIES) {
-          console.log(`[Verify] Not verified yet, retrying in ${CONFIG.RETRY_DELAY_MS}ms...`);
-          setTimeout(() => verifyPayment(attempt + 1), CONFIG.RETRY_DELAY_MS);
+        // ❌ FAILED / EXPIRED
+        if (data.status === 'failed' || data.status === 'expired') {
+          $('error-message').textContent =
+            data.status === 'expired'
+              ? 'Payment window expired. Please try again from the app.'
+              : 'Payment was not confirmed by the provider.';
+          show('failed');
           return;
         }
 
-        // ❌ Give up → show failure
+        // ⏳ STILL PENDING → retry
+        if (attempt < CONFIG.MAX_RETRIES) return retry(attempt);
         $('error-message').textContent =
-          data.message || 'Payment was not confirmed by the provider.';
+          'Payment is still processing. It may take a few minutes.';
         show('failed');
       } catch (err) {
-        console.error('[Verify] Error:', err);
-
-        // Network error → retry
-        if (attempt < CONFIG.MAX_RETRIES) {
-          setTimeout(() => verifyPayment(attempt + 1), CONFIG.RETRY_DELAY_MS);
-          return;
-        }
-
+        console.error('[Barter] Error:', err);
+        if (attempt < CONFIG.MAX_RETRIES) return retry(attempt);
         $('error-message').textContent =
           err.message || 'Unable to reach the server. Please check your connection.';
         show('failed');
       }
     }
 
-    // Kick off
-    verifyPayment();
+    function retry(attempt) {
+      console.log(`[Barter] Retrying in ${CONFIG.RETRY_DELAY_MS}ms…`);
+      setTimeout(() => checkStatus(attempt + 1), CONFIG.RETRY_DELAY_MS);
+    }
+
+    checkStatus();
   })();
 </script>
 
