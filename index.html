@@ -2,196 +2,616 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#00A86B">
   <title>Payment Successful — Barter Ethio</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💚</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #00A86B;
       --primary-dark: #007A4D;
+      --primary-glow: rgba(0, 168, 107, 0.35);
       --primary-light: #E8F5EE;
-      --success: #00A86B;
-      --danger: #B00020;
+      --primary-soft: #F0FAF5;
+      --success: #10B981;
+      --success-glow: rgba(16, 185, 129, 0.4);
+      --danger: #EF4444;
+      --danger-glow: rgba(239, 68, 68, 0.3);
+      --warning: #F59E0B;
       --text-main: #0B3D2E;
       --text-sub: #5A7A6B;
+      --text-faint: #9BB0A5;
       --bg: #F4F9F6;
       --border: #D4E8DD;
+      --card-bg: #FFFFFF;
+      --shadow-lg: 0 24px 60px -12px rgba(0, 122, 77, 0.18);
+      --shadow-md: 0 10px 30px -8px rgba(0, 122, 77, 0.12);
+      --shadow-sm: 0 4px 12px -2px rgba(0, 122, 77, 0.08);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
     body {
-      background: linear-gradient(135deg, #F8FCFA 0%, var(--primary-light) 100%);
+      background: #F4F9F6;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      padding: 1rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 1.25rem;
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
     }
+
+    /* Animated gradient background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 168, 107, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.10) 0%, transparent 50%),
+        linear-gradient(135deg, #F8FCFA 0%, #E8F5EE 100%);
+      z-index: -2;
+    }
+
+    /* Subtle grain/noise */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .card {
-      background: white;
-      padding: 2.5rem 2rem;
-      border-radius: 24px;
-      box-shadow: 0 25px 50px -12px rgba(0,122,77,0.15);
+      background: var(--card-bg);
+      padding: 2.5rem 2rem 2rem;
+      border-radius: 28px;
+      box-shadow: var(--shadow-lg);
       text-align: center;
-      max-width: 420px;
+      max-width: 440px;
       width: 100%;
+      position: relative;
+      animation: cardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      border: 1px solid rgba(0, 168, 107, 0.06);
     }
+
+    /* Top gradient bar */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, #10B981 50%, var(--primary) 100%);
+      background-size: 200% 100%;
+      animation: gradientSlide 3s ease infinite;
+    }
+
+    @keyframes gradientSlide {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     .brand {
-      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       color: var(--primary);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      background: var(--primary-light);
+      border-radius: 100px;
+      border: 1px solid rgba(0, 168, 107, 0.15);
     }
-    .checkmark {
+
+    /* ─── Loading State ─── */
+    .spinner-wrap {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 1.75rem;
+    }
+
+    .spinner-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: var(--primary);
+      animation: spinRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+
+    .spinner-ring:nth-child(2) {
+      inset: 12px;
+      border-top-color: #10B981;
+      animation-duration: 1.6s;
+      animation-direction: reverse;
+    }
+
+    .spinner-ring:nth-child(3) {
+      inset: 24px;
+      border-top-color: #34D399;
+      animation-duration: 2s;
+    }
+
+    .spinner-core {
+      position: absolute;
+      inset: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #34D399, var(--primary));
+      box-shadow: 0 0 20px var(--primary-glow);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes spinRing {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.85); opacity: 0.7; }
+    }
+
+    /* ─── Success Checkmark ─── */
+    .checkmark-wrap {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkmark-wrap::before,
+    .checkmark-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--success);
+      opacity: 0;
+      animation: burst 1.2s ease-out 0.3s forwards;
+    }
+
+    .checkmark-wrap::after {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes burst {
+      0% { transform: scale(0.6); opacity: 0.6; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .checkmark-circle {
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      display: block;
-      stroke-width: 2.5;
-      stroke: var(--success);
-      fill: none;
-      margin: 0 auto 1.5rem;
-      box-shadow: inset 0 0 0 var(--success);
-      animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+      background: radial-gradient(circle at 30% 30%, #34D399, var(--success));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 10px 30px -5px var(--success-glow),
+        inset 0 2px 8px rgba(255, 255, 255, 0.3);
+      animation: checkPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      z-index: 2;
     }
-    .checkmark__circle {
-      stroke-dasharray: 166;
-      stroke-dashoffset: 166;
-      stroke-width: 2.5;
-      stroke: var(--success);
-      fill: none;
-      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+
+    @keyframes checkPop {
+      0% { transform: scale(0); }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
-    .checkmark__check {
-      transform-origin: 50% 50%;
+
+    .checkmark-svg {
+      width: 56px;
+      height: 56px;
+      stroke: #FFFFFF;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
       stroke-dasharray: 48;
       stroke-dashoffset: 48;
-      stroke: white;
-      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+      animation: drawCheck 0.5s cubic-bezier(0.65, 0, 0.45, 1) 0.3s forwards;
     }
-    @keyframes stroke { 100% { stroke-dashoffset: 0; } }
-    @keyframes scale { 0%,100% { transform: none; } 50% { transform: scale3d(1.1,1.1,1); } }
-    @keyframes fill { 100% { box-shadow: inset 0 0 0 48px var(--success); } }
-    .error-icon {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: var(--danger);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
-      color: white; font-size: 3rem; font-weight: 700;
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
     }
+
+    /* ─── Error Icon ─── */
+    .error-wrap {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 1.75rem;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #F87171, var(--danger));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 10px 30px -5px var(--danger-glow),
+        inset 0 2px 8px rgba(255, 255, 255, 0.3);
+      color: white;
+      font-size: 3rem;
+      font-weight: 800;
+      animation: errorShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+
+    @keyframes errorShake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+      20%, 40%, 60%, 80% { transform: translateX(6px); }
+    }
+
+    /* ─── Typography ─── */
     h1 {
       color: var(--text-main);
       font-size: 1.75rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
     }
-    p {
+
+    h1.success-title {
+      background: linear-gradient(135deg, var(--text-main), var(--primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
       color: var(--text-sub);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      font-weight: 500;
     }
-    .subtitle { font-size: 0.875rem; }
-    .amount-box {
-      background: var(--primary-light);
-      border: 1px solid #B8E5CC;
-      border-radius: 16px;
-      padding: 1rem;
-      margin: 1.5rem 0;
-    }
-    .amount-label {
-      font-size: 0.75rem; font-weight: 600; color: var(--primary-dark);
-      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.25rem;
-    }
-    .amount-value {
-      font-size: 2rem; font-weight: 800; color: var(--text-main);
-    }
-    .amount-value small {
-      font-size: 1rem; font-weight: 600; color: var(--text-sub); margin-left: 0.25rem;
-    }
-    .ref-box {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 0.75rem 1rem;
-      border-radius: 12px;
-      margin: 1rem 0;
-    }
-    .ref-label {
-      font-size: 0.7rem; font-weight: 600; color: var(--text-sub);
-      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.25rem;
-    }
-    .ref-value {
-      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-      font-size: 0.75rem; color: var(--text-main);
-      word-break: break-all; line-height: 1.4;
-    }
-    .actions {
-      display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;
-    }
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: 12px;
+
+    .error-text {
+      color: var(--danger);
+      font-size: 0.9rem;
       font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* ─── Amount Box ─── */
+    .amount-box {
+      background: linear-gradient(135deg, var(--primary-light) 0%, #F0FAF5 100%);
+      border: 1.5px solid rgba(0, 168, 107, 0.15);
+      border-radius: 20px;
+      padding: 1.25rem 1rem;
+      margin: 1.75rem 0 1rem;
+      position: relative;
+      overflow: hidden;
+      display: none;
+    }
+
+    .amount-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .amount-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .amount-value {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.04em;
+      position: relative;
+      line-height: 1;
+    }
+
+    .amount-value small {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-left: 0.4rem;
+      letter-spacing: 0;
+    }
+
+    /* ─── Reference Box ─── */
+    .ref-box {
+      background: #FAFCFB;
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      border-radius: 14px;
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    .ref-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .ref-label::before {
+      content: '🔗';
+      font-size: 0.7rem;
+    }
+
+    .ref-value {
+      font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+      font-size: 0.72rem;
+      color: var(--text-main);
+      word-break: break-all;
+      line-height: 1.5;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .ref-value:hover {
+      color: var(--primary);
+    }
+
+    /* ─── Retry Progress ─── */
+    .retry-status {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    .retry-status.visible {
+      display: flex;
+    }
+
+    .retry-dots {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .retry-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: dotPulse 1.4s ease-in-out infinite;
+    }
+
+    .retry-dot:nth-child(2) { animation-delay: 0.2s; }
+    .retry-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* ─── Buttons ─── */
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-weight: 700;
       font-size: 0.95rem;
       cursor: pointer;
       border: none;
       text-align: center;
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.2s ease,
+                  background 0.2s ease;
+      letter-spacing: -0.01em;
+      font-family: inherit;
     }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
     .btn-primary {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: white;
-      box-shadow: 0 4px 14px rgba(0,168,107,0.3);
+      box-shadow:
+        0 8px 20px -4px var(--primary-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
+
+    .btn-primary:hover {
+      box-shadow:
+        0 12px 28px -4px var(--primary-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
     .btn-secondary {
       background: white;
       color: var(--text-sub);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
     }
-    .spinner {
-      width: 48px; height: 48px;
-      border: 3px solid var(--border);
-      border-top: 3px solid var(--primary);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 1.5rem;
+
+    .btn-secondary:hover {
+      background: var(--bg);
+      color: var(--text-main);
+      border-color: var(--text-faint);
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .state { display: none; }
-    .state.active { display: block; }
+
+    /* ─── State Management ─── */
+    .state {
+      display: none;
+      animation: stateIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .state.active {
+      display: block;
+    }
+
+    @keyframes stateIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ─── Footer ─── */
     .footer {
-      margin-top: 2rem; padding-top: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
       border-top: 1px solid var(--border);
-      font-size: 0.75rem; color: var(--text-sub);
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      font-weight: 500;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover {
+      color: var(--primary-dark);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 420px) {
+      .card {
+        padding: 2rem 1.5rem 1.75rem;
+        border-radius: 24px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .amount-value {
+        font-size: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="card">
-  <div class="brand">💚 Barter Ethio</div>
-
-  <!-- LOADING -->
-  <div id="state-loading" class="state active">
-    <div class="spinner"></div>
-    <h1>Verifying Payment</h1>
-    <p class="subtitle">Please wait while we confirm your transaction…</p>
+  <div class="brand">
+    <span>💚</span>
+    <span>Barter Ethio</span>
   </div>
 
-  <!-- SUCCESS -->
+  <!-- ─── LOADING ─── -->
+  <div id="state-loading" class="state active">
+    <div class="spinner-wrap">
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-core"></div>
+    </div>
+    <h1>Verifying Payment</h1>
+    <p class="subtitle">Please wait while we confirm your transaction…</p>
+
+    <div class="retry-status visible" id="retry-status">
+      <span>Checking</span>
+      <div class="retry-dots">
+        <div class="retry-dot"></div>
+        <div class="retry-dot"></div>
+        <div class="retry-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SUCCESS ─── -->
   <div id="state-success" class="state">
-    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-      <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-      <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-    </svg>
-    <h1>Payment Successful!</h1>
+    <div class="checkmark-wrap">
+      <div class="checkmark-circle">
+        <svg class="checkmark-svg" viewBox="0 0 52 52">
+          <path d="M14 27 L23 36 L38 20" />
+        </svg>
+      </div>
+    </div>
+    <h1 class="success-title">Payment Successful!</h1>
     <p class="subtitle" id="plan-label">Your plan is now active.</p>
 
-    <div class="amount-box" id="amount-box" style="display: none;">
+    <div class="amount-box" id="amount-box">
       <div class="amount-label">Amount Paid</div>
       <div class="amount-value">
         <span id="amount-value">—</span>
@@ -206,16 +626,19 @@
 
     <div class="actions">
       <a href="barter://payment/return" id="back-btn" class="btn btn-primary">
-        Return to app
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Return to App
       </a>
     </div>
   </div>
 
-  <!-- FAILED -->
+  <!-- ─── FAILED ─── -->
   <div id="state-failed" class="state">
-    <div class="error-icon">✕</div>
+    <div class="error-wrap">✕</div>
     <h1>Payment Not Confirmed</h1>
-    <p id="error-message">We couldn't verify your payment.</p>
+    <p class="error-text" id="error-message">We couldn't verify your payment.</p>
 
     <div class="ref-box">
       <div class="ref-label">Transaction Reference</div>
@@ -224,14 +647,16 @@
 
     <div class="actions">
       <a href="barter://payment/return" id="retry-btn" class="btn btn-primary">
-        Return to app
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Return to App
       </a>
     </div>
   </div>
 
   <div class="footer">
-    Need help? Email
-    <a href="mailto:support@barter.et">support@barter.et</a>
+    Need help? <a href="mailto:support@barter.et">Contact Support</a>
   </div>
 </div>
 
@@ -243,7 +668,7 @@
     API_BASE: 'https://api.smrestaurant.com/api/v1',
     APP_DEEP_LINK: 'barter://payment/return',
     APP_FALLBACK_URL: 'https://api.smrestaurant.com',
-    MAX_RETRIES: 30,        // 30 × 3s = 90 seconds
+    MAX_RETRIES: 30,
     RETRY_DELAY_MS: 3000,
   };
 
@@ -253,7 +678,6 @@
     const txRef =
       params.get('tx_ref') || params.get('trx_ref') || params.get('reference');
 
-    // Deep-link back button
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     const goBack = () => {
       if (isMobile) {
@@ -281,22 +705,39 @@
     $('ref-value').textContent = txRef;
     $('failed-ref-value').textContent = txRef;
 
+    // Click ref to copy
+    ['ref-value', 'failed-ref-value'].forEach((id) => {
+      const el = $(id);
+      if (!el) return;
+      el.addEventListener('click', () => {
+        navigator.clipboard?.writeText(el.textContent).catch(() => {});
+        const original = el.textContent;
+        el.textContent = '✓ Copied';
+        setTimeout(() => { el.textContent = original; }, 1200);
+      });
+      el.title = 'Click to copy';
+    });
+
     const PLAN_LABELS = {
-      daily_pass: 'Daily Pass active',
-      credit_100: '100 posts added',
-      credit_500: '500 posts added',
-      credit_1000: '1000 posts added',
-      pro_15d: 'PRO · 15 days activated',
-      monthly_pro: 'PRO · 30 days activated',
-      pro_6mo: 'PRO · 6 months activated',
-      yearly_pro: 'PRO · 1 year activated',
+      daily_pass: '✓ Daily Pass activated',
+      credit_100: '✓ 100 posts added',
+      credit_500: '✓ 500 posts added',
+      credit_1000: '✓ 1000 posts added',
+      pro_15d: '✓ PRO · 15 days activated',
+      monthly_pro: '✓ PRO · 30 days activated',
+      pro_6mo: '✓ PRO · 6 months activated',
+      yearly_pro: '✓ PRO · 1 year activated',
     };
 
-    // ══════════════════════════════════════════════
-    // CALL YOUR REAL API
-    //   GET /payments/by-tx/:txRef
-    // ══════════════════════════════════════════════
+    // ─────────────────────────────────────────────
+    // Poll /payments/by-tx/:txRef
+    // ─────────────────────────────────────────────
     async function checkStatus(attempt = 1) {
+      const retryEl = $('retry-status');
+      if (retryEl && attempt > 1) {
+        retryEl.querySelector('span').textContent = `Checking (${attempt}/${CONFIG.MAX_RETRIES})`;
+      }
+
       try {
         const url = `${CONFIG.API_BASE}/payments/by-tx/${encodeURIComponent(txRef)}`;
         console.log(`[Barter] Attempt ${attempt}: ${url}`);
@@ -306,9 +747,7 @@
         console.log('[Barter] Response:', data);
 
         if (!res.ok) {
-          if (res.status === 404 && attempt < CONFIG.MAX_RETRIES) {
-            return retry(attempt);
-          }
+          if (res.status === 404 && attempt < CONFIG.MAX_RETRIES) return retry(attempt);
           throw new Error(data.message || `Server error ${res.status}`);
         }
 
@@ -340,7 +779,7 @@
           return;
         }
 
-        // ⏳ STILL PENDING → retry
+        // ⏳ PENDING → retry
         if (attempt < CONFIG.MAX_RETRIES) return retry(attempt);
         $('error-message').textContent =
           'Payment is still processing. It may take a few minutes.';
